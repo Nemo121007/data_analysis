@@ -10,7 +10,7 @@ pattern_clip = r"(\d{2}:\d{2}:\d{2},\d+).*pressure=(\d+)"
 
 def read_data(name_file='n_log1.txt'):
     result = []
-    with open(name_file, 'r') as infile, open('out1.txt', 'w'):
+    with open(name_file, 'r') as infile:
         for line in infile:
             # Проверяем наличие подстрок "KEEP" и "A00000000001" через pattern_search
             if re.search(pattern_search, line):
@@ -18,7 +18,6 @@ def read_data(name_file='n_log1.txt'):
                 if match:
                     time, pressure = match.groups()
                     result.append([time, pressure])
-
     return result
 
 
@@ -105,8 +104,8 @@ if __name__ == "__main__":
     times_2, pressures_2 = calculate_values(data2, 20)
 
     # Строим график
-    ax3.plot(times_1, pressures_1, label='data1')
-    ax3.plot(times_2, pressures_2, label='data2')
+    ax3.plot(times_1, pressures_1)
+    ax3.plot(times_2, pressures_2)
     ax3.legend(["n_log1.txt", "n_log2.txt"])
     ax3.set_xlabel('Время')
     ax3.set_ylabel('Давление')

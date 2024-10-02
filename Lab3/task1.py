@@ -7,14 +7,12 @@ import matplotlib.pyplot as plt
 pattern_search = r".* \bA00000000001\b .*KEEP"
 pattern_clip = r"(\d{2}:\d{2}:\d{2},\d+).*pressure=(\d+)"
 
-def read_data(name_file = 'n_log1.txt'):
-    result = []
-    # Открываем исходный файл для чтения и выходной файл для записи
-    with open(name_file, 'r') as infile, open('out1.txt', 'w') as outfile:
 
-        # Проходим по каждой строке в исходном файле
+def read_data(name_file='n_log1.txt'):
+    result = []
+    with open(name_file, 'r') as infile, open('out1.txt', 'w'):
         for line in infile:
-            # Проверяем наличие подстрок "KEEP" и "A00000000001"
+            # Проверяем наличие подстрок "KEEP" и "A00000000001" через pattern_search
             if re.search(pattern_search, line):
                 match = re.search(pattern_clip, line)
                 if match:
@@ -23,19 +21,20 @@ def read_data(name_file = 'n_log1.txt'):
 
     return result
 
-def calculate_values(data, interval_cut = 10):
+
+def calculate_values(data_cut, interval_cut=10):
     # Преобразуем данные в более удобный формат (список кортежей)
-    data = [(datetime.datetime.strptime(time, "%H:%M:%S,%f"), int(pressure)) for time, pressure in data]
+    data_cut = [(datetime.datetime.strptime(time, "%H:%M:%S,%f"), int(pressure)) for time, pressure in data_cut]
     # Определяем текущий интервал
-    current_interval = data[0][0].minute // interval_cut
+    current_interval = data_cut[0][0].minute // interval_cut
 
     result = []
     count, summ = 0, 0
-    for time, pressure in data:
+    for time, pressure in data_cut:
         interval = time.minute // interval_cut
         if interval != current_interval:
-            result.append([current_interval, summ / count])
             # Переходим к следующему интервалу
+            result.append([current_interval, summ / count])
             current_interval = interval
             summ = 0
             count = 0
@@ -44,18 +43,16 @@ def calculate_values(data, interval_cut = 10):
         count += 1
     result.append([current_interval, summ / count])
 
-    times, pressures = zip(*result)
+    times_data, pressures_data = zip(*result)
 
-    return times, pressures
-
-
+    return times_data, pressures_data
 
 
 if __name__ == "__main__":
     data1 = []
     data2 = []
 
-    if not(os.path.exists('n_log1.json') and os.path.exists('n_log2.json')):
+    if not (os.path.exists('n_log1.json') and os.path.exists('n_log2.json')):
         with open('n_log1.json', 'w') as f:
             data1 = read_data('n_log1.txt')
             json.dump(data1, f)

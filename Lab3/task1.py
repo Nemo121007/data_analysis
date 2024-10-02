@@ -23,17 +23,16 @@ def read_data(name_file = 'n_log1.txt'):
 
     return result
 
-def calculate_values(data, interval = 10):
-    # Преобразуем данные в список кортежей (время, давление)
+def calculate_values(data, interval_cut = 10):
+    # Преобразуем данные в более удобный формат (список кортежей)
     data = [(datetime.datetime.strptime(time, "%H:%M:%S,%f"), int(pressure)) for time, pressure in data]
-
     # Определяем текущий интервал
-    current_interval = data[0][0].minute // interval
+    current_interval = data[0][0].minute // interval_cut
 
     result = []
     count, summ = 0, 0
     for time, pressure in data:
-        interval = time.minute // interval
+        interval = time.minute // interval_cut
         if interval != current_interval:
             result.append([current_interval, summ / count])
             # Переходим к следующему интервалу
@@ -70,12 +69,12 @@ if __name__ == "__main__":
             data2 = json.load(f)
 
     # Преобразуем данные в более удобный формат (список кортежей)
-    data1 = [(datetime.datetime.strptime(time, "%H:%M:%S,%f"), int(pressure)) for time, pressure in data1]
+    data = [(datetime.datetime.strptime(time, "%H:%M:%S,%f"), int(pressure)) for time, pressure in data1]
 
     # Фильтруем данные по времени (при условии, что данные отсортированы по времени)
     start_time = datetime.datetime.strptime("14:10:00", "%H:%M:%S")
     end_time = datetime.datetime.strptime("14:15:00", "%H:%M:%S")
-    filtered_data = [item for item in data1 if start_time <= item[0] <= end_time]
+    filtered_data = [item for item in data if start_time <= item[0] <= end_time]
 
     # Извлекаем время и давление в отдельные списки
     times, pressures = zip(*filtered_data)
@@ -88,99 +87,33 @@ if __name__ == "__main__":
 
     # Строим график
     ax1.plot(times, pressures)
+    ax1.legend("A00000000001")
     ax1.set_xlabel("Время")
     ax1.set_ylabel("Давление")
     ax1.set_title("График 1. Давление 14:10 - 14:15 из n_log1.txt")
     ax1.grid(True)
 
-
-
-    # Преобразуем данные в список кортежей (время, давление)
-    data2 = [(datetime.datetime.strptime(time, "%H:%M:%S,%f"), int(pressure)) for time, pressure in data2]
-
-    # Определяем текущий интервал
-    current_interval = data2[0][0].minute // 10
-
-    result = []
-    count, summ = 0, 0
-    for time, pressure in data2:
-        interval = time.minute // 10
-        if interval != current_interval:
-            result.append([current_interval, summ / count])
-            # Переходим к следующему интервалу
-            current_interval = interval
-            summ = 0
-            count = 0
-        # Добавляем давление к сумме и увеличиваем счетчик измерений
-        summ += pressure
-        count += 1
-    result.append([current_interval, summ / count])
-
-    times, pressures = zip(*result)
-
-
+    times, pressures = calculate_values(data2, 10)
 
     # Строим график
     ax2.plot(times, pressures)
-    ax2.set_xlabel('Номер 10-минутного интервала')
-    ax2.set_ylabel('Среднее давление')
-    ax2.set_title('Давление по 10 мин из n-log2.txt')
+    ax2.legend("A00000000001")
+    ax2.set_xlabel('Время')
+    ax2.set_ylabel('Давление')
+    ax2.set_title('График2. Давление по 10 мин из n_log2.txt')
     ax2.grid(True)
 
+    times_1, pressures_1 = calculate_values(data1, 20)
 
-
-
-    # Определяем текущий интервал
-    current_interval = data1[0][0].minute // 20
-
-    result = []
-    count, summ = 0, 0
-    for time, pressure in data1:
-        interval = time.minute // 20
-        if interval != current_interval:
-            result.append([current_interval, summ / count])
-            # Переходим к следующему интервалу
-            current_interval = interval
-            summ = 0
-            count = 0
-        # Добавляем давление к сумме и увеличиваем счетчик измерений
-        summ += pressure
-        count += 1
-    result.append([current_interval, summ / count])
-
-    times_1, pressures_1 = zip(*result)
-
-
-    # Определяем текущий интервал
-    current_interval = data2[0][0].minute // 20
-
-    result = []
-    count, summ = 0, 0
-    for time, pressure in data2:
-        interval = time.minute // 20
-        if interval != current_interval:
-            result.append([current_interval, summ / count])
-            # Переходим к следующему интервалу
-            current_interval = interval
-            summ = 0
-            count = 0
-        # Добавляем давление к сумме и увеличиваем счетчик измерений
-        summ += pressure
-        count += 1
-    result.append([current_interval, summ / count])
-
-    times_2, pressures_2 = zip(*result)
+    times_2, pressures_2 = calculate_values(data2, 20)
 
     # Строим график
     ax3.plot(times_1, pressures_1, label='data1')
     ax3.plot(times_2, pressures_2, label='data2')
-    ax3.set_xlabel('Номер 10-минутного интервала')
-    ax3.set_ylabel('Среднее давление')
-    ax3.set_title('Давление по 10 мин из n-log2.txt')
+    ax3.legend(["n_log1.txt", "n_log2.txt"])
+    ax3.set_xlabel('Время')
+    ax3.set_ylabel('Давление')
+    ax3.set_title('График3. Давление по 20 мин')
     ax3.grid(True)
-
-
-
-
 
     plt.show()

@@ -4,7 +4,7 @@ import json
 import datetime
 import matplotlib.pyplot as plt
 
-pattern_search = r".* \bA00000000001\b .*KEEP"
+pattern_search = r".* A00000000001 .*KEEP"
 pattern_clip = r"(\d{2}:\d{2}:\d{2},\d+).*pressure=(\d+)"
 
 
@@ -104,9 +104,9 @@ if __name__ == "__main__":
     times_2, pressures_2 = calculate_values(data2, 20)
 
     # Строим график
-    ax3.plot(times_1, pressures_1)
-    ax3.plot(times_2, pressures_2)
-    ax3.legend(["n_log1.txt", "n_log2.txt"])
+    ax3.plot(times_1, pressures_1, label="n_log1.txt")
+    ax3.plot(times_2, pressures_2, label="n_log2.txt")
+    ax3.legend()
     ax3.set_xlabel('Время')
     ax3.set_ylabel('Давление')
     ax3.set_title('График3. Давление по 20 мин')

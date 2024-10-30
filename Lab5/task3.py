@@ -4,7 +4,7 @@ from scipy.interpolate import interp1d
 
 # Определяем функцию
 def f(x):
-    return x * (1 - np.sin(2*x)) + np.sqrt(x)
+    return(-np.sin(2*x)) + np.sqrt(x)
 
 
 if __name__ == "__main__":
@@ -25,13 +25,27 @@ if __name__ == "__main__":
     f_cubic = interp1d(x_data, y_data, kind='cubic')
     y_cubic = f_cubic(x_interp)
 
+    fig = plt.figure()
+
+    ax1 = fig.add_subplot(2, 1, 1)
+    ax2 = fig.add_subplot(2, 1, 2)
+
     # Построение графиков
-    plt.plot(x_data, y_data, 'o', label='Исходные данные')
-    plt.plot(x_interp, y_linear, label='Линейная интерполяция')
-    plt.plot(x_interp, y_cubic, label='Кубическая интерполяция')
-    plt.legend()
-    plt.xlabel('x')
-    plt.ylabel('f(x)')
+    ax1.plot(x_data, y_data, 'o', label='Исходные данные')
+    ax1.plot(x_interp, y_linear, label='Линейная интерполяция')
+    ax1.legend()
+    ax1.set_xlabel('x')
+    ax1.set_ylabel('f(x)')
+    ax1.set_title('Линейная интерполяция')
+    ax1.grid(True)
+
+    ax2.plot(x_data, y_data, 'o', label='Исходные данные')
+    ax2.plot(x_interp, y_cubic, label='Кубическая интерполяция')
+    ax2.legend()
+    ax2.set_xlabel('x')
+    ax2.set_ylabel('f(x)')
+    ax2.set_title('Кубическая интерполяция')
+    ax2.grid(True)
+
     plt.title('Графики функции и ее интерполяций')
-    plt.grid(True)
     plt.show()

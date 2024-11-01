@@ -14,6 +14,7 @@ def main():
 
     # Найдем количество раз, которое встретился каждый департамент (значение столбца Department)
     department_counts = dfs['Department'].value_counts()
+    print(department_counts)
 
     # Выведем 3 департамента, которые наиболее часто встречаются
     top_departments = department_counts.nlargest(3)
@@ -27,7 +28,7 @@ def main():
     print("Медиана сумм транзакций за январь и февраль 2022 года:", median_transaction)
 
     # Добавим в dfs столбец с разностью значений модуля найденной медианы и модуля значения из поля TrnxAmount
-    dfs['TrnxAmount_Diff'] = abs(median_transaction) - abs(dfs['TrnxAmount'])
+    dfs['TrnxAmount_Diff'] = abs((median_transaction) - (dfs['TrnxAmount']))
 
     # Выведем первые несколько строк для проверки
     print(dfs.head())

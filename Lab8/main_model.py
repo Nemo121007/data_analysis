@@ -82,7 +82,7 @@ if __name__ == "__main__":
     model.add(GRU(64, dropout=0.35, recurrent_dropout=0.25))
     model.add(Dense(num_classes, activation='softmax'))
 
-    model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['sparse_categorical_accuracy'])
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
     print(model.summary())
 
     batch_size = 32

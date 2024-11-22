@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import itertools
 import matplotlib.pyplot as plt
+from keras.src.optimizers import RMSprop
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, f1_score
 from tensorflow.keras.models import Sequential
@@ -50,13 +51,9 @@ if __name__ == "__main__":
     df = pd.read_excel("df_prep.xlsx")
 
     # Разделение на выборки
-    X_vt_1, X_test_1, y_vt_1, y_test_1 = train_test_split(
-        df['preprocessed_text'], df['class'], random_state=42,
-        test_size=0.9, stratify=df['class']
-    )
-    X_train_1, X_valid_1, y_train_1, y_valid_1 = train_test_split(
-        X_vt_1, y_vt_1, test_size=0.5, random_state=42
-    )
+    X_vt_1, X_test_1, y_vt_1, y_test_1 = train_test_split(df['preprocessed_text'], df['class'], random_state=42,
+                                                          test_size=0.1, stratify=df['class'])
+    X_train_1, X_valid_1, y_train_1, y_valid_1 = train_test_split(X_vt_1, y_vt_1, test_size=0.2, random_state=42)
 
     # Токенизация текстов
     X_train_split = [text.split() for text in X_train_1]
@@ -64,8 +61,15 @@ if __name__ == "__main__":
     X_test_split = [text.split() for text in X_test_1]
 
     # Обучение Word2Vec
+    # Размерность вектора для каждого слова
     embedding_dim = 100
-    word2vec_model = Word2Vec(sentences=X_train_split, vector_size=embedding_dim, window=5, min_count=1, workers=4)
+    '''
+    vector_size - размерность выходного вектора
+    window - окно для анализа контекста
+    min_count - минимальная частота для анализа
+    workers - ядра
+    '''
+    word2vec_model = Word2Vec(sentences=X_train_split, vector_size=embedding_dim, window=5, min_count=1, workers=-1)
 
     # Создание индекса слов
     tokenizer = Tokenizer()
@@ -96,10 +100,10 @@ if __name__ == "__main__":
         input_length=maxSequenceLength,
         trainable=False  # Если Word2Vec предобучен, заморозим веса
     ))
-    model.add(GRU(32, dropout=0.3, recurrent_dropout=0.3))
+    model.add(GRU(64, dropout=0.2, recurrent_dropout=0.2))
     model.add(Dense(num_classes, activation='softmax'))
 
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+    model.compile(optimizer=RMSprop(learning_rate=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
     print(model.summary())
 
     # Обучение модели

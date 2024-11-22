@@ -18,10 +18,14 @@
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy']) 0.27036147996530313
 model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['sparse_categorical_accuracy']) 0.27036147996530313
-model.compile(loss='kullback_leibler_divergence', optimizer='adam', metrics=['categorical_accuracy'])
-from tensorflow_addons.losses import SigmoidFocalCrossEntropy
-model.compile(loss=SigmoidFocalCrossEntropy(), optimizer='adam', metrics=['categorical_accuracy'])
-model.compile(loss='hinge', optimizer='adam', metrics=['categorical_accuracy'])
+model.compile(loss='kl_divergence', optimizer='adam', metrics=['categorical_accuracy'])  0.2560715691493046
+model.compile(loss='hinge', optimizer='adam', metrics=['categorical_accuracy'])  0.08227848101265822
+
+
+0.27036147996530313
+ model.compile(optimizer=RMSprop(learning_rate=0.001), loss='categorical_crossentropy', metrics=['accuracy']) 0.2740849933538647
+ model.compile(optimizer=Adagrad(learning_rate=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
+ model.compile(optimizer=Adagrad(learning_rate=0.01), loss='categorical_crossentropy', metrics=['accuracy']) 0.17538445846279382
 
 
 

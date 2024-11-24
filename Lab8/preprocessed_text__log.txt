@@ -1,0 +1,31 @@
+Model Parameters:
+Input Dim: 10000
+Output Dim: 55
+GRU Layer:
+Layer: GRU
+Neurons: 32
+Dropout: 0.3
+Recurrent Dropout: 0.3
+Activation Function: Sigmoid
+Loss Function: categorical_crossentropy
+Optimizer: Adam
+Metrics: Accuracy
+Epochs: 25
+Batch Size: 32
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.83      0.86      0.85        29
+           1       0.00      0.00      0.00         2
+           2       0.20      0.33      0.25         3
+           3       1.00      0.33      0.50         3
+           4       0.83      0.94      0.88        16
+           5       0.40      0.50      0.44         4
+           7       0.00      0.00      0.00         2
+
+    accuracy                           0.75        59
+   macro avg       0.47      0.42      0.42        59
+weighted avg       0.72      0.75      0.72        59
+
+Macro F1 Score: 0.41775071610565134

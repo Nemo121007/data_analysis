@@ -1,0 +1,30 @@
+Model Parameters:
+Input Dim: 10000
+Output Dim: 220
+<GRU name=gru, built=True>
+Neurons: 64
+Dropout: 0.2
+Recurrent Dropout: 0.2
+Activation Function: softmax
+Loss Function: categorical_crossentropy
+Optimizer: <keras.src.optimizers.rmsprop.RMSprop object at 0x000001CB1BAF9C10>
+Metrics: ['accuracy']
+Epochs: 70
+Batch Size: 32
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.87      0.90      0.88        29
+           1       1.00      0.50      0.67         2
+           2       0.50      0.33      0.40         3
+           3       0.75      1.00      0.86         3
+           4       0.75      0.75      0.75        16
+           5       0.60      0.75      0.67         4
+           7       1.00      0.50      0.67         2
+
+    accuracy                           0.80        59
+   macro avg       0.78      0.68      0.70        59
+weighted avg       0.80      0.80      0.79        59
+
+Macro F1 Score: 0.6983569699066068

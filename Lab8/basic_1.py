@@ -3,7 +3,6 @@ import pandas as pd
 import itertools
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing import sequence
 from tensorflow.keras.models import Sequential
@@ -11,7 +10,7 @@ from tensorflow.keras.layers import Embedding, GRU, Dense, LSTM
 from tensorflow.keras import utils as keras_utils
 import tensorflow as tf
 from sklearn.metrics import classification_report, confusion_matrix, f1_score
-from tensorflow.keras.optimizers import RMSprop, Adagrad, Adadelta
+from tensorflow.keras.optimizers import Adagrad
 
 filename = 'basic_'
 # Фиксируем сиды

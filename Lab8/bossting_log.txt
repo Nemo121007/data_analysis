@@ -1,0 +1,21 @@
+Model Parameters:
+Input Dim: 10000
+Output Dim: 220
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.89      0.83      0.86        29
+           1       0.67      1.00      0.80         2
+           2       0.50      0.33      0.40         3
+           3       0.67      0.67      0.67         3
+           4       0.79      0.69      0.73        16
+           5       0.43      0.75      0.55         4
+           6       0.00      0.00      0.00         0
+           7       0.50      0.50      0.50         2
+
+    accuracy                           0.75        59
+   macro avg       0.55      0.60      0.56        59
+weighted avg       0.78      0.75      0.76        59
+
+Macro F1 Score: 0.5628246753246753

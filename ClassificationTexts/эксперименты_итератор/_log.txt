@@ -1,0 +1,29 @@
+Model Parameters:
+Input Dim: 10000
+Output Dim: 128
+Neurons: 64
+Dropout: 0.2
+Recurrent Dropout: 0.2
+Activation Function: sigmoid
+Loss Function: categorical_crossentropy
+Optimizer: <keras.src.optimizers.rmsprop.RMSprop object at 0x0000020DF4E6FBC0>
+Metrics: ['accuracy']
+Epochs: 140
+Batch Size: 32
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.76      0.66      0.70        29
+           1       1.00      0.50      0.67         2
+           2       0.50      0.33      0.40         3
+           3       0.67      0.67      0.67         3
+           4       0.45      0.56      0.50        16
+           5       0.14      0.25      0.18         4
+           7       1.00      0.50      0.67         2
+
+    accuracy                           0.58        59
+   macro avg       0.65      0.50      0.54        59
+weighted avg       0.63      0.58      0.59        59
+
+Macro F1 Score: 0.5407888407888407

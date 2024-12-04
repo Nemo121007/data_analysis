@@ -1,0 +1,32 @@
+Model Parameters for 600 epochs:
+Input Dim: 10000
+Output Dim: 55
+LSTM Layer:
+Layer: LSTM
+Neurons: 32
+Dropout: 0.3
+Recurrent Dropout: 0.3
+Activation Function: Sigmoid
+Loss Function: categorical_crossentropy
+Optimizer: Adam
+Metrics: Accuracy
+Epochs: 600
+Batch Size: 32
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.66      0.72      0.69       260
+           1       0.00      0.00      0.00        22
+           2       0.00      0.00      0.00        26
+           3       0.28      0.44      0.34        25
+           4       0.51      0.71      0.60       140
+           5       0.71      0.13      0.22        38
+           6       0.00      0.00      0.00         5
+           7       0.50      0.14      0.22        14
+
+    accuracy                           0.58       530
+   macro avg       0.33      0.27      0.26       530
+weighted avg       0.54      0.58      0.53       530
+
+Macro F1 Score: 0.2593261262838469

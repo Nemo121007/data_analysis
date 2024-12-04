@@ -1,0 +1,124 @@
+Model Parameters for 50 epochs:
+Input Dim: 10000
+Output Dim: 105
+LSTM Layer:
+Layer: LSTM
+Neurons: 32
+Dropout: 0.3
+Recurrent Dropout: 0.3
+Activation Function: Sigmoid
+Loss Function: categorical_crossentropy
+Optimizer: Adam
+Metrics: Accuracy
+Epochs: 50
+Batch Size: 32
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.55      0.61      0.58       260
+           1       0.00      0.00      0.00        22
+           2       0.00      0.00      0.00        26
+           3       0.50      0.04      0.07        25
+           4       0.32      0.55      0.41       140
+           5       0.00      0.00      0.00        38
+           6       0.00      0.00      0.00         5
+           7       0.00      0.00      0.00        14
+
+    accuracy                           0.45       530
+   macro avg       0.17      0.15      0.13       530
+weighted avg       0.38      0.45      0.39       530
+Model Parameters for 50 epochs:
+Input Dim: 10000
+Output Dim: 55
+LSTM Layer:
+Layer: LSTM
+Neurons: 32
+Dropout: 0.3
+Recurrent Dropout: 0.3
+Activation Function: Sigmoid
+Loss Function: categorical_crossentropy
+Optimizer: Adam
+Metrics: Accuracy
+Epochs: 50
+Batch Size: 32
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.56      0.80      0.66       260
+           1       0.00      0.00      0.00        22
+           2       0.00      0.00      0.00        26
+           3       0.00      0.00      0.00        25
+           4       0.38      0.43      0.40       140
+           5       0.00      0.00      0.00        38
+           6       0.00      0.00      0.00         5
+           7       0.00      0.00      0.00        14
+
+    accuracy                           0.51       530
+   macro avg       0.12      0.15      0.13       530
+weighted avg       0.37      0.51      0.43       530
+
+Macro F1 Score: 0.13261405148245686Model Parameters for 50 epochs:
+Input Dim: 10000
+Output Dim: 55
+LSTM Layer:
+Layer: LSTM
+Neurons: 32
+Dropout: 0.3
+Recurrent Dropout: 0.3
+Activation Function: Sigmoid
+Loss Function: categorical_crossentropy
+Optimizer: Adam
+Metrics: Accuracy
+Epochs: 50
+Batch Size: 32
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.57      0.81      0.67       260
+           1       0.00      0.00      0.00        22
+           2       0.00      0.00      0.00        26
+           3       0.00      0.00      0.00        25
+           4       0.38      0.43      0.40       140
+           5       0.00      0.00      0.00        38
+           6       0.00      0.00      0.00         5
+           7       0.00      0.00      0.00        14
+
+    accuracy                           0.51       530
+   macro avg       0.12      0.16      0.13       530
+weighted avg       0.38      0.51      0.43       530
+
+Macro F1 Score: 0.13373015873015873Model Parameters for 50 epochs:
+Input Dim: 10000
+Output Dim: 55
+LSTM Layer:
+Layer: LSTM
+Neurons: 32
+Dropout: 0.3
+Recurrent Dropout: 0.3
+Activation Function: Sigmoid
+Loss Function: categorical_crossentropy
+Optimizer: Adam
+Metrics: Accuracy
+Epochs: 50
+Batch Size: 32
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.60      0.57      0.59       260
+           1       0.00      0.00      0.00        22
+           2       0.00      0.00      0.00        26
+           3       0.00      0.00      0.00        25
+           4       0.33      0.61      0.43       140
+           5       0.17      0.13      0.15        38
+           6       0.00      0.00      0.00         5
+           7       0.00      0.00      0.00        14
+
+    accuracy                           0.45       530
+   macro avg       0.14      0.16      0.15       530
+weighted avg       0.40      0.45      0.41       530
+
+Macro F1 Score: 0.14558565931219986

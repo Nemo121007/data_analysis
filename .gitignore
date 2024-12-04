@@ -1,3 +1,11 @@
-creditcard.csv
+.venv/
 
-*.xlsx
+__pycache__/
+
+*__pycache__*
+
+.idea/
+
+*.py[cod]
+
+tmp_*
